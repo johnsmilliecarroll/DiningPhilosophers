@@ -1,10 +1,6 @@
 public class Table {
-	public boolean ch1 = false;
-	public boolean ch2 = false;
-	public boolean ch3 = false;
-	public boolean ch4 = false;
-	public boolean ch5 = false;
 	private static final int NUM_PHILO = 5;
+	public Chopstick[] chopsticks = new Chopstick[NUM_PHILO];
 	
 	
 	public static void main(String[] args) {
@@ -14,24 +10,51 @@ public class Table {
 	
 	Philosopher[] philos = new Philosopher[NUM_PHILO];
 	
-	Table(int threadNum) {
-		
-
+	Table() {
+		startTable();
 	}
 	
 	public void startTable() {
+		//Start Philosophers
 		for (int i = 0; i < NUM_PHILO; i++) {
 			Philosopher p = new Philosopher(i);
-			philos[i] = p; // start philosopher threads
+			philos[i] = p;
 		}
-		//Chopsticks are true, meaning they are on the table.
-		ch1 = true;
-		ch2 = true;
-		ch3 = true;
-		ch4 = true;
-		ch5 = true;
+		//Start Chopsticks
+		for(int i = 0; i < chopsticks.length; i ++)
+		{
+			chopsticks[i] = new Chopstick();
+		}
 	}
 	
 	
 
+}
+
+class Chopstick {
+	boolean acquired = false;
+	int owner = -1; //-1 means it's on the table
+	
+	
+	Chopstick() {
+		
+	}
+	
+	void acquire(int myowner)
+	{
+		if(owner == -1)
+		{
+			owner = myowner;
+		}
+	}
+	
+	void release() {
+		acquired = false;
+		owner = -1;
+	}
+	
+	Chopstick getNeighbor()
+	{
+		return this;
+	}
 }
