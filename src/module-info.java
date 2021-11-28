@@ -1,9 +1,0 @@
-/**
- * 
- */
-/**
- * @author John
- *
- */
-module DiningPhilosophers {
-}
