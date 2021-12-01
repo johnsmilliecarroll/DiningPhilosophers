@@ -7,4 +7,4 @@ This repository contains the java programs required to run our Dining Philosophe
 
 For our slideshow presentation, go here: https://tinyurl.com/pr7fdpcj
 
-For our UMl diagram, go here: https://tinyurl.com/yckuur5s
+For our UML diagram, go here: https://tinyurl.com/yckuur5s
