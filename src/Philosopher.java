@@ -11,8 +11,6 @@ public class Philosopher implements Runnable {
 	final int maxWaitTime = 10000; //10 second max
 	final int EatTime = 4000; //4 seconds to eat
 	final int GrabTime = 1000; //2 seconds to grab
-	private int totalWaitTime = 0;
-	private int totalEatTime = 0;
 	private int timeSpentHungry = 0;
 	private int maxStarvationTime = 15000;
 	DisplayPanel window = null;
@@ -84,7 +82,6 @@ public class Philosopher implements Runnable {
 			window.setState("EATING",myindex);
 			Thread.sleep(EatTime);
 			timeSpentHungry=0;
-			totalEatTime += EatTime; //increment our total
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			System.err.println(t.getName() + " wasn't given enough time to eat.");
@@ -111,7 +108,6 @@ public class Philosopher implements Runnable {
 					try {
 						int sleepTime = minWaitTime + (int)(Math.random() * ((maxWaitTime - minWaitTime) + 1));
 						Thread.sleep(sleepTime);
-						totalWaitTime += sleepTime; //increment our total
 						timeSpentHungry += sleepTime; //increment time since last bite.
 						if(timeSpentHungry >= maxStarvationTime)
 						{
@@ -132,27 +128,14 @@ public class Philosopher implements Runnable {
 		}
 	}
 	
+	/**
+	 *  Sets the Philosopher's graphical state to starving.
+	 */
+	
 	private void starving()
 	{
 		window.setState("STARVING",myindex);
 	}
-	
-	/**
-	 * Stops the philosopher after the program duration has elapsed, notifies it that it is time
-	 * to stop waiting.
-	 */
-	public void stopMember() {
-		running = false;
-		synchronized (this) {
-			notify(); //let me know to stop waiting
-		}
-		try {
-			t.join();
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-	}
-
 	
 	
 }

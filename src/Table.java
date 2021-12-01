@@ -1,7 +1,6 @@
 public class Table {
 	public static final int NUM_PHILO = 5;
 	public Chopstick[] chopsticks = new Chopstick[NUM_PHILO];
-	final int RUN_TIME = 30000; // 30 second program duration
 	public static final DisplayPanel mywindow = new DisplayPanel();
 	
 	public static void main(String[] args) {
